@@ -1,6 +1,6 @@
 # pull base image
 
-FROM python:3
+FROM python:3.7
 
 
 
@@ -14,7 +14,13 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /code
 
+
+#install dependencies
+
+COPY requirements.txt /code
 # Install dependencies
+RUN pip install --upgrade pip
+RUN python -m pip install pillow==7.2.0
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 COPY . /code/
